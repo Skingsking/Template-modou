@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		table{
+			margin: 100px auto;
+			width: 500px;
+		}
+		td{
+			border: 1px solid #0094ff;
+		}
+	</style>
+</head>
+<body>
+	<h1>获取女神 模板</h1>
+	<input type="button" value='获取女神' id="miss">;
+	<table id='lianji'></table>
+
+	<!-- 创建模板 -->
+	<script type="text/fuck" id="fuck">
+		<!-- 创建模板 用{{}}号的请示 -->
+			<tr>
+				<td>{{name}}</td>
+				<td>{{skill}}</td>
+				<td><img src='{{path}}'></td>
+				<td><a href='#'>点击了解更多关于{{name}}的事</a></td>
+			</tr>
+	</script>
+
+	<!-- 引用js -->
+	<script type="text/javascript" src="03.fox.js"></script>
+	<script type="text/javascript">
+			//获取点击事件
+			document.querySelector('#miss').onclick=function(){
+					//五部曲
+					var ajax=new XMLHttpRequest();
+					ajax.open('post','10.php');
+					//请求报文
+					ajax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+					ajax.send();
+					//判断
+					ajax.onreadystatechange=function(){
+						if(ajax.readyState==4&&ajax.status==200){
+								console.log(ajax.responseText);
+
+								//转换 JSON.parse；数组
+								var  curr=JSON.parse(ajax.responseText);
+									console.log(curr);
+
+									//获取到需要添加的模板
+									var one=document.querySelector('#fuck').innerHTML;
+
+									//创建一个字符串 讲内容包裹到里面
+									var tab='';
+									for(var i=0;i<curr.length;i++){
+										var cnm=curr[i];
+
+										//引用封装的文件
+										//一个为模版 一个新的内容
+										var templte=fox_template_pro(one,cnm);
+											console.log(templte);
+											tab+=templte;
+
+
+									}
+									// 循环完毕以后 tr 拼接完毕 直接设置给 页面中的 table即可
+										//直接给table就好了
+										document.querySelector('#lianji').innerHTML=tab;
+						}		
+					}
+
+
+
+             }
+	</script>
+</body>
+</html>

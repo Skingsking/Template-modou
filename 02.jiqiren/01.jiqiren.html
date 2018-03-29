@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+			html,body{
+				height: 100%;
+				margin: 0;
+				padding: 0;
+			}
+			.box{
+				height: 100%;
+				width: 500px;
+				margin: 0 auto;
+				border: 1px solid #000;
+			}
+			.up{
+				width: 100%;
+				height: 80%;
+				background-color: blue;
+
+				/*能滚动*/
+				overflow: scroll;
+			}
+			.btn{
+				width: 100%;
+			    height: 20%;
+			    background-color: hotpink;
+			}
+			.btn input{
+				height: 100%;
+				border: none;
+				/* box-sizing: border-box; */
+				padding: 0;
+				margin: 0;
+		}
+			.btn input:first-child{
+			width: 80%;
+
+		}
+		   .btn input:nth-child(2){
+			width: 20%;
+		}
+		.my{
+			height: 30px;
+			line-height: 30px;
+			text-align: left;
+			color: pink;
+			font-size: 25px;
+			border: 1px solid #000;
+			background: yellowgreen;
+		}
+		.me{
+			height: 30px;
+			line-height: 30px;
+			text-align: right;
+			font-size: 25px;
+			color: white;
+			background-color: seagreen;
+			border: 1px solid #0094ff;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="up"></div>
+		<div class="btn">
+			<input type="text" id="parse" ><input type="button" value="发送" id='miss'>
+		</div>
+
+	</div>
+	<!-- 引用 自己写的 js封装 -->
+	<script type="text/javascript" src="01.fenghzuang.js"></script>
+	<script type="text/javascript">
+
+			//获取发送的点击事件
+			document.querySelector('#miss').onclick=function(){
+
+					//第一大步  
+					//获取输入的内容
+					var  curr=document.querySelector('#parse').value;
+
+					//创建出对话框  就是创建一个div 然后 在里面添加和输入内容一样的东西  第三就是创建一个样式 
+					var myBox = document.createElement('div');
+		             myBox.innerHTML =curr;
+		             myBox.classList.add('my');
+
+		           // 添加到界面上
+		           document.querySelector('.up').appendChild(myBox);
+
+		           //第二大步 就是 创建ajax五部曲
+		           //获取每项值 当返回的时候 创建div样式
+		           // 参数1 url
+		           // 参数2 数据
+		           // 参数3 获取的方法
+		           // 参数4 回调curr
+		           ajax_tool_pro({
+		           		url:'chat_pro_plus.php',
+		           		data:'aaa='+curr,
+		           		method:'post',
+		           		success:function(data){
+		           			console.log(data);
+
+		           			//创建div
+		           		var robotBox=document.createElement("div");
+		           			robotBox.innerHTML=data;
+		           			robotBox.classList.add('me');
+
+		           			//写到页面上
+		           			  document.querySelector('.up').appendChild(robotBox);
+		           		}
+		           })
+
+			}
+
+	</script>
+</body>
+</html>

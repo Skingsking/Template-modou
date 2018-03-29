@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<!-- 只要里面不是jacavapity 那就在页面获取不到 需要自己获取 -->
+	<script type="text/miss" id="miss">
+		
+	<ul>
+		<li>{{name}}</li>
+		<li>{{habbit}}</li>
+	</ul>
+	</script>
+
+	<!-- 引用js -->
+	<script type="text/javascript" src="03.fox.js"></script>
+	<script type="text/javascript">
+			//获取到 上面的 ul  li
+			var one=document.querySelector('#miss');
+			// console.log(one);
+			//现在得到是 整个 script  我们只要里面的内容所有
+			var two=one.innerHTML;
+			console.log(two);
+
+		// 准备对象
+		var obj = {
+			name:"柯南",
+			habbit:"去哪,哪出事"
+		}
+
+			// 进行替换  获取的为ID值了
+			var resultStr = fox_template_pro(two,obj);
+
+			console.log(resultStr);
+
+			// 添加到界面上
+			document.body.innerHTML = resultStr;
+
+
+	</script>
+</body>
+</html>

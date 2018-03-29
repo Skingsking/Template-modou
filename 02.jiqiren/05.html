@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+			html,body{
+				height: 100%;
+				margin: 0;
+				padding: 0;
+			}
+			.box{
+				height: 100%;
+				width: 500px;
+				margin: 0 auto;
+				border: 1px solid #000;
+			}
+			.up{
+				width: 100%;
+				height: 80%;
+				background-color: blue;
+
+				/*能滚动*/
+				overflow: scroll;
+			}
+			.btn{
+				width: 100%;
+			    height: 20%;
+			    background-color: hotpink;
+			}
+			.btn input{
+				height: 100%;
+				border: none;
+				/* box-sizing: border-box; */
+				padding: 0;
+				margin: 0;
+		}
+			.btn input:first-child{
+			width: 80%;
+
+		}
+		   .btn input:nth-child(2){
+			width: 20%;
+		}
+		.my{
+			height: 30px;
+			line-height: 30px;
+			text-align: left;
+			color: pink;
+			font-size: 25px;
+			border: 1px solid #000;
+			background: yellowgreen;
+		}
+		.me{
+			height: 30px;
+			line-height: 30px;
+			text-align: right;
+			font-size: 25px;
+			color: white;
+			background-color: seagreen;
+			border: 1px solid #0094ff;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="up"></div>
+		<div class="btn">
+			<input type="text" id="parse" ><input type="button" value="发送" id='miss'>
+		</div>
+	</div>
+
+	<script src='01.fenghzuang.js'></script>
+	<script>
+			document.querySelector('#miss').onclick=function(){
+					//第一步 要获取第一个btn里面输入的文字内容
+
+					//然后获取到上面的Parse的value值
+						var curr=document.querySelector('#parse').value;
+						//然后获取到给他创建一个div盒子 然后添加到curr里面 在给他赋值
+							var myBox = document.createElement('div');
+							myBox.innerHTML=curr;
+							//创建一个my标签 可以写样式
+							myBox.classList.add('my');
+							//然后将myBox赋值给上面的up div
+							document.querySelector('.up').appendChild(myBox);
+
+							//然后引用封装的五部曲文件
+							ajax_tool_pro({
+								url:'05.php',
+								data:'name='+curr,
+								method:'post',
+								success:function(data){
+									console.log(data);
+
+									//然后个这个值赋值就是下面输入的内容
+									var meBox=document.createElement('div');
+									meBox.innerHTML=data;
+									meBox.classList.add('me');
+									//这个也要加载上面的盒子 显示两个
+									document.querySelector('.up').appendChild(meBox);
+								}
+
+							})
+			}
+
+	</script>
+</body>
+</html>

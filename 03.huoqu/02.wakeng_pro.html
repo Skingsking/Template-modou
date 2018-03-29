@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+			//定义一个正则
+			var reg=/\w+/;
+
+			// 准备挖好坑的字符串
+		var str ='我是一个来自南方的name,我爱吃food,我的爱好是habbit,我的朋友是friend';
+		// var str ='我是一个来自南方的,我爱吃我的爱好是';
+
+		// 准备 用来填坑的 对象
+		var obj = {
+			name:'柯基',
+			food:'狗粮',
+			habbit:'汪汪汪',
+			friend:'哈士奇'
+		};
+
+		//要利用while循环来获取 先检测里面有没有字母
+		var one;
+		while(one=reg.exec(str)){
+			//获取key值  索引从0开始
+			var keyName=one[0];
+			//通过obj赋值
+			var value=obj[keyName];
+
+			//替换 一个为原先值 一个为替换完事的
+			 str=str.replace(keyName,value);
+			console.log(str);
+
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+			html,body{
+				height: 100%;
+				margin: 0;
+				padding: 0;
+			}
+			.box{
+				height: 100%;
+				width: 500px;
+				margin: 0 auto;
+				border: 1px solid #000;
+			}
+			.up{
+				width: 100%;
+				height: 80%;
+				background-color: blue;
+
+				/*能滚动*/
+				overflow: scroll;
+			}
+			.btn{
+				width: 100%;
+			    height: 20%;
+			    background-color: hotpink;
+			}
+			.btn input{
+				height: 100%;
+				border: none;
+				/* box-sizing: border-box; */
+				padding: 0;
+				margin: 0;
+		}
+			.btn input:first-child{
+			width: 80%;
+
+		}
+		   .btn input:nth-child(2){
+			width: 20%;
+		}
+		.my{
+			height: 30px;
+			line-height: 30px;
+			text-align: left;
+			color: pink;
+			font-size: 25px;
+			border: 1px solid #000;
+			background:blueviolet ;
+		}
+		.me{
+			height: 30px;
+			line-height: 30px;
+			text-align: right;
+			font-size: 25px;
+			color: white;
+			background-color: tomato;
+			border: 1px solid #0094ff;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="up"></div>
+		<div class="btn">
+			<input type="text" id="parse" ><input type="button" value="发送" id='miss'>
+		</div>
+	</div>
+
+	<script src='01.fenghzuang.js'></script>
+	<script>
+			document.querySelector('#miss').onclick=function(){
+					//第一步 要获取第一个btn里面输入的文字内容
+
+					var curr=document.querySelector('#parse').value;
+
+					//创建div
+					var myBox = document.createElement('div');
+					myBox.innerHTML=curr;
+					myBox.classList.add('my');
+
+					document.querySelector('.up').appendChild(myBox);
+
+					 ajax_tool_pro({
+					 	url:'03.jiqiren.php',
+					 	data:'name='+curr,
+					 	method:'post',
+					 	success:function(data){
+					 			console.log(data);
+
+
+					 			var meBox = document.createElement('div');
+									meBox.innerHTML=data;
+									meBox.classList.add('me');
+
+									document.querySelector('.up').appendChild(meBox);
+
+
+					 	}
+					 })
+			}
+
+	</script>
+</body>
+</html>

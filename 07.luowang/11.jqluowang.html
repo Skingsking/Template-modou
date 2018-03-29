@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	
+	<style type="text/css">
+		.item{
+			width: 640px;
+			/* height: 452px; */
+			background-color: #eee;
+			margin-top: 50px;
+			border-radius: 5px;
+			overflow: hidden;	
+		}
+		.item .cover{
+			display: block;
+		}
+		.item .cover img{
+			display: block;
+		}
+		.item .bottom{
+			height: 35px;
+			position: relative;
+		}
+		.item .bottom a{
+			text-decoration: none;
+			line-height: 35px;
+			font-family: '微软雅黑';
+			margin-left: 20px;
+			color: gray;
+		}
+		.item .bottom .rightBox{
+			position: absolute;
+			top: 0px;
+			right: 0px;
+			height: 100%;
+		}
+		.item .bottom .rightBox span{
+			line-height: 35px;
+			margin: 0 20px;
+			font-size: 15px;
+			/* font-family: "微软雅黑"; */
+			color: gray;
+		}
+		.item .bottom .rightBox span::before{
+			margin-right: 10px;
+			color: #dd5a64;
+		}
+		.getMore{
+			width: 100px;
+			height: 100px;
+			border: none;
+			background-color: skyblue;
+			position: fixed;
+			right: 100px;
+			top: 50%;
+			margin-top: -50px;
+		}
+	</style>
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+</head>
+<body>
+<h1>使用jq写的页面</h1>
+<input type="button"  value="加载更多" class='getMore'>
+	<div class="container">
+		<div class="item">
+			<a href="#" class='cover'><img src="images/vol.859.jpg" alt=""></a>
+			<div class="bottom">
+				<a href="#">vol.847 用一首歌来想象你</a>
+				<div class='rightBox'>
+					<span class='icon-heart'>18554</span>
+					<span class='icon-comment'>292</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+
+	<!-- 引用模板插件 -->
+	<script type="text/javascript" src='js/template-native.js'></script>
+
+	<!-- 引用五部曲插件 -->
+	<script type="text/javascript" src="01.fenghzuang.js"></script>
+	<!-- 引用jq插件 -->
+	<script type="text/javascript" src='js/jquery.min.js'></script>
+
+	<!-- 创建模板 -->
+	<script type="text/miss" id="miss">
+
+		<!-- 要用for循环来做 好多图片 另外只能获取对象 不能获取对象  所有要把数组转为对象  items：数组 -->
+		<%for(var i=0;i<items.length;i++){%>
+		<div class="item">
+			<a href="#" class='cover'><img src="<%=items[i].path%>" alt=""></a>
+			<div class="bottom">
+				<a href="#"><%=items[i].name%></a>
+				<div class='rightBox'>
+					<span class='icon-heart'><%=items[i].star%></span>
+					<span class='icon-comment'><%=items[i].message%></span>
+				</div>
+			</div>
+		</div>
+	<%}%>
+
+
+	</script>
+
+	<script>
+			$(function(){
+				$('.getMore').click(function(){
+					$.ajax({
+						url:'07.luowang.php',
+						type:'get',
+						success:function(data){
+							//转换
+							var curr=JSON.parse(data);
+
+							var  obj={
+								items:curr
+							}
+
+							var  sum=template('miss',obj);
+
+							//添加到桌面
+							$('.container').append(sum);
+						}
+					})
+				})
+			})
+
+	</script>

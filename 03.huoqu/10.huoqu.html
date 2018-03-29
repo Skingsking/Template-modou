@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<!-- 只要里面不是jacavapity 那就在页面获取不到 需要自己获取 -->
+	<script type="text/miss" id="miss">
+		
+	<ul>
+		<li>{{name}}</li>
+		<li>{{habbit}}</li>
+	</ul>
+	</script>
+
+	<!-- 引用js -->
+	<script type="text/javascript" src="03.fox.js"></script>
+	<script type="text/javascript">
+			//获取到 上面的 ul  li
+				var one=document.querySelector('#miss');
+				//现在获取的是全部 我们只要里面的ul li
+				var two=one.innerHTML;
+					console.log(two);
+
+					//准备对象
+					var obj={
+						name:'兰博',
+						habbit:'帅气'
+					}
+
+					//引用封装的函数
+					var obj=fox_template_pro(two,obj);
+					console.log(obj);
+					document.body.innerHTML=obj;
+
+
+	</script>
+</body>
+</html>

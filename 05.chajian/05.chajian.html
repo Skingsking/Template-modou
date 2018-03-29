@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			list-style: none;
+		}
+	</style>
+</head>
+<body>
+	<!-- 首先引用插件 -->
+	<script type="text/javascript" src="js/template-native.js"></script>
+
+
+
+	<script type="text/miss" id="miss">
+	<!-- 创建的为坑 -->
+		<ul>
+			<li>菜名：<%=name%></li>
+			<li>推荐：<%=skill%></li>
+			<li>样式：<%=will%></li>
+			<ul>
+				<!-- 利用for循环接收信息 -->
+				<!-- <%for(var i=0;i<friend.length;i++){%>
+				<li><%=i+1%><%=friend[i]%></li>
+				<%}%> -->
+				<%for(var i=0;i<friend.length;i++){%>
+				<li>索引<%=i+1%>:<%=friend[i]%></li>
+				<%}%>
+			</ul>
+		</ul>
+	</script>
+
+
+
+
+
+
+
+	<script type="text/javascript">
+
+			//创建obj值 准备对象
+			var obj={
+				name:'西蓝花',
+				skill:'好吃',
+				will:'不好看',
+				friend:['花菜','菜花','翠花','方便面']
+			};
+
+			//引用  参数1 为ID 坑的ID  
+			//参数2 为 对象
+			var fuck=template('miss',obj);
+			console.log(fuck);
+
+			//到界面上
+			document.body.innerHTML=fuck;
+	</script>
+</body>
+</html>

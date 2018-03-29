@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+			table{
+			margin: 100px auto;
+			width: 500px;
+		}
+			td{
+			border: 1px solid #0094ff;
+			}
+
+	</style>
+</head>
+<body>
+			<h1>获取女神 模板</h1>
+			<input type="button" value='获取女神' id="miss">;
+			<table id='lianji'></table>
+
+			<!-- 创建模板 -->
+			<script type="text/fuck" id="fuck">
+				<tr>
+					
+				<td>{{name}}</td>
+				<td>{{skill}}</td>
+				<td><img src="{{path}}" alt=""></td>
+				<td><a href="#">了解更多——{{name}}</a></td>
+             </tr>
+
+			</script>
+
+			<script src='03.fox.js'></script>
+			<script>
+					document.querySelector('#miss').onclick=function(){
+						//五部曲
+					var ajax=new XMLHttpRequest();
+
+					ajax.open('post','06.nvshen.php');
+
+					ajax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+					
+					ajax.send();
+
+					ajax.onreadystatechange=function(){
+					if(ajax.readyState==4&&ajax.status==200){
+						console.log(ajax.responseText);
+
+						//转换为数组
+						var curr=JSON.parse(ajax.responseText);
+						console.log(curr);
+
+						//获取模板
+						var  one=document.querySelector('#fuck').innerHTML;
+
+
+						var  str='';
+
+						for(var i=0;i<curr.length;i++){
+							var fuck=curr[i];
+
+							// 调用函数插件
+							var huoqu=fox_template_pro(one,fuck);
+							console.log(huoqu);
+
+							str+=huoqu;
+
+							document.querySelector('#lianji').innerHTML=str;
+						}
+					}
+
+					}
+
+
+
+
+					}
+
+
+			</script>
+
+</body>
+</html>

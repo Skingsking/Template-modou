@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<!-- 引用js -->
+	<script type="text/javascript" src="03.fox.js"></script>
+	<script type="text/javascript">
+			//  挖好坑的 字符串
+	var str ='我是一只animal,我的毛色是color,我喜欢吃的食物是food,我喜爱的犬类是dog';
+
+	// 对象
+	var obj = {
+		animal:'泰迪',
+		color:'棕色',
+		food:'狗粮',
+		dog:'哈士奇'
+	}
+
+	//检测的是 第一个封装函数 这个封装函数 获取的索引从0开始
+
+	var one=fox_template(str,obj);
+	console.log(one);
+
+	</script>
+
+<script type="text/javascript">
+
+	//  挖好坑的 字符串
+	var str ='我是一只{{animal}},我的毛色是{{color}}';
+
+	// 对象
+	var obj = {
+		animal:'taidi',
+		color:'棕色',
+	}
+
+	//因为这次加括号了 所有要调用第二个封装
+	
+		var two=fox_template_pro(str,obj);
+			console.log(two);
+</script>
+</body>
+</html>

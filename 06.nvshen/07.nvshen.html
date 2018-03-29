@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		table{
+			margin: 100px auto;
+			width: 500px;
+		}
+		td{
+			border: 1px solid #0094ff;
+		}
+
+	</style>
+</head>
+<body>
+		<h1>插件获取女神</h1>
+		<input type="button" value="插件获取女神" id="miss">
+
+		<table  id="lianji"></table>
+
+		<!-- 定义模板  tr  td -->
+		<script type="text/fuck" id='fuck'>
+				<tr>
+					<td>{{name}}</td>
+					<td>{{skill}}</td>
+					<td><img src='{{path}}'></td>
+					<td><a href='#'>点击了解更多关于{{name}}的事</a></td>
+
+				</tr>
+
+		</script>
+
+
+		<!-- 引用js -->
+		<script type="text/javascript" src="03.fox.js"></script>
+		<script type="text/javascript">
+			//获取点击事件
+			document.querySelector('#miss').onclick=function(){
+					//五部曲
+					var ajax=new XMLHttpRequest();
+
+					ajax.open('post','06.nvshen.php');
+
+					ajax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+					
+					ajax.send();
+
+					ajax.onreadystatechange=function(){
+						if(ajax.readyState==4&&ajax.status==200){
+							console.log(ajax.responseText);
+
+							//转换 JSON.parse；数组
+							var curr=JSON.parse(ajax.responseText);
+							console.log(curr);
+
+
+							// 获取 想要替换的文本
+							var one =document.querySelector('#fuck').innerHTML;
+
+							// 将 每一次 获取的 字符串 拼接起来
+							var tables='';
+
+							//利用for循环 连接字符串
+							for(var i=0;i<curr.length;i++){
+								var currs=curr[i];
+
+								//引用js函数
+								var template=fox_template_pro(one,currs);
+								//获取成功
+								console.log(template);
+
+								tables+=template;
+							}
+							// 循环完毕以后 tr 拼接完毕 直接设置给 页面中的 table即可
+							document.querySelector('#lianji').innerHTML=tables;
+						}
+					}
+
+
+
+
+			}
+	</script>
+</body>
+</html>

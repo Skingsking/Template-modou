@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/miss" id="miss">
+			<ul>
+				<li>{{name}}</li>
+				<li>{{skill}}</li>
+			</ul>
+		
+	</script>
+
+	<script type="text/javascript" src="03.fox.js"></script>
+
+	<script type="text/javascript">
+			//获取到上面的 ul li
+			var one=document.querySelector('#miss');
+			//现在是整个全部
+			var two=one.innerHTML;
+				//现在打印的为 ul  li
+			console.log(two);
+
+
+			//创建obj
+			var obj={
+				name:'文博',
+				skill:'女人'
+			}
+
+
+			//引用
+			var curr=fox_template_pro(two,obj);
+
+			//弄到桌面上
+
+			document.body.innerHTML=curr;
+	</script>
+</body>
+</html>

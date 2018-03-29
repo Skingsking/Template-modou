@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+			//定义一个正则
+			var reg=/\w+/;
+
+			// 准备挖好坑的字符串
+		var str ='我是一个来自南方的name,我爱吃food,我的爱好是habbit,我的朋友是friend';
+		// var str ='我是一个来自南方的,我爱吃我的爱好是';
+
+		// 准备 用来填坑的 对象
+		var obj = {
+			name:'柯基',
+			food:'狗粮',
+			habbit:'汪汪汪',
+			friend:'哈士奇'
+		};
+		//使用while循环 来做 
+		var one;
+		//exec判断 看是否符合这个正则
+		while(one=reg.exec(str)){
+				//符合的话 给他key值从0开始
+				var keyName=one[0];
+				//使用value获取
+				var value=obj[keyName];
+
+				//替换 一个为以前的 一个为value
+				str=str.replace(keyName,value);
+				console.log(str);
+		}
+
+		
+	</script>
+</body>
+</html>

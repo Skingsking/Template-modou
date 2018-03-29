@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+		<script type="text/javascript">
+				//定义一个正则
+				var reg1=/\w+/;
+
+					// 准备挖好坑的字符串
+				var str ='我是一个来自南方的name,我爱吃food,我的爱好是habbit,我的朋友是friend';
+				// var str ='我是一个来自南方的,我爱吃我的爱好是';
+
+				// 准备 用来填坑的 对象
+				var obj = {
+					name:'柯基',
+					food:'狗粮',
+					habbit:'汪汪汪',
+					friend:'哈士奇'
+				};
+				/*
+					1  用正则检测 aaa=reg1.exec（str） 坑里于字母没
+					2 如果有  获取到索引为0  bbb= aaa【0】
+					3 赋值   用对象ccc==obj【bbb】
+					4 获取 一个为当前的值bbb 一个为现在 ccc替换 replace
+					使用的 while循环
+				*/
+				var  aaa;
+				while(aaa=reg1.exec(str)){
+					var bbb=aaa[0];
+					var ccc=obj[bbb];
+
+					str=str.replace(bbb,ccc);
+						console.log(str);
+
+				}
+
+
+		</script>
+
+
+	<script type="text/miss" id="miss">
+		<!-- 定义一个坑  -->
+		    <ul>
+				<li>{{name}}</li>
+				<li>{{habbit}}</li>
+			</ul>
+	</script>
+
+	<script src='03.fox.js'></script>
+	<script>
+			var one=document.querySelector('#miss');
+			// console.log(one);  //现在获取的是整个坑  只要里面的ul li
+			var two=one.innerHTML;
+			console.log(two);
+
+			//创建对象
+			var obj={
+				name:"柯南",
+			    habbit:"去哪,哪出事"
+			}
+
+			//自己封装的函数 调用
+
+			var  there=fox_template_pro(two,obj);
+			console.log(there)
+
+			document.body.innerHTML=there;
+
+	</script>
+</body>
+</html>

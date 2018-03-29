@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="button" value="测试封装的五部曲" id="miss">;
+		<!-- 多选并修改 -->
+	<ul>
+		<li>我爱广州小蛮腰1</li>
+		<li>我爱广州小蛮腰2</li>
+		<li>我爱广州小蛮腰3</li>
+		<li>我爱广州小蛮腰4</li>
+		<li>我爱广州小蛮腰5</li>
+		<li>我爱广州小蛮腰6</li>
+		<li>我爱广州小蛮腰7</li>
+		<li>我爱广州小蛮腰8</li>
+		<li>我爱广州小蛮腰9</li>
+		<li>我爱广州小蛮腰10</li>
+	</ul>
+	<script type="text/javascript" src="01.fenghzuang.js"></script>
+	<script type="text/javascript">
+			//绑定事件
+			document.querySelector('#miss').onclick=function(){
+				//引用自己做的插件 五部曲
+				ajax_tool_pro({
+					url:'01.ajax.php',
+					data:undefined,
+					method:'get',
+					success:function(data){
+						console.log(data);
+					},
+
+				})
+			}
+
+	</script>
+</body>
+</html>
